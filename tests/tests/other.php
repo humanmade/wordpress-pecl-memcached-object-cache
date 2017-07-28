@@ -80,16 +80,6 @@ class MemcachedUnitTestsAll extends MemcachedUnitTests {
 		$this->assertContainsOnly( 'string', array( $this->object_cache->getResultMessage() ) );
 	}
 
-	public function test_get_server_by_key() {
-		$key = microtime();
-		$value = 'mwanga';
-		$server_key = 'perkins';
-
-		$this->assertTrue( $this->object_cache->addByKey( $server_key, $key, $value ) );
-
-		$this->assertContainsOnly( 'array', array( $this->object_cache->getServerByKey( $server_key ) ) );
-	}
-
 	public function test_get_server_list() {
 		$this->assertContainsOnly( 'array', array( $this->object_cache->getServerList() ) );
 	}
@@ -102,13 +92,6 @@ class MemcachedUnitTestsAll extends MemcachedUnitTests {
 
 	public function test_get_version() {
 		$this->assertTrue( is_array( $this->object_cache->getVersion() ) );
-	}
-
-	public function test_set_option() {
-		$value = 'widgets';
-
-		$this->assertTrue( $this->object_cache->setOption( Memcached::OPT_PREFIX_KEY, $value ) );
-		$this->assertSame( $value, $this->object_cache->getOption( Memcached::OPT_PREFIX_KEY ) );
 	}
 
 	public function test_switch_to_blog() {
